@@ -1,9 +1,7 @@
 import Courier from "@trycourier/courier";
 import { DEMO_USER_ID } from "#shared/demo-user";
 
-// GET /api/courier-token mints a short-lived Courier JWT for the signed-in user.
-// Your API key signs it, so this runs on the server and the key never reaches
-// the browser.
+// Your API key signs the JWT, so this runs on the server and the key never reaches the browser.
 export default defineEventHandler(async (event) => {
   const apiKey = process.env.COURIER_API_KEY;
   if (!apiKey) {

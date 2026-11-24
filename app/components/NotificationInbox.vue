@@ -5,8 +5,7 @@ import { CourierInbox, useCourier } from "@trycourier/courier-vue";
 const courier = useCourier();
 const error = ref("");
 
-// onMounted runs only in the browser, so the token is fetched and the user is
-// signed in after hydration, never during server rendering.
+// onMounted runs only in the browser, so sign-in happens after hydration, never during SSR.
 onMounted(async () => {
   try {
     const { userId, token } = await $fetch("/api/courier-token");
