@@ -5,7 +5,7 @@ import { DEMO_USER_ID } from "../shared/demo-user";
 // Run it with `npm run send` while `npm run dev` has the page open.
 const apiKey = process.env.COURIER_API_KEY;
 if (!apiKey || apiKey === "YOUR_COURIER_API_KEY") {
-  console.error("COURIER_API_KEY is not set. Copy .env.example to .env and add your key.");
+  console.error("COURIER_API_KEY is not set. Add it to .env.");
   process.exit(1);
 }
 

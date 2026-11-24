@@ -20,7 +20,7 @@ Install the Courier skill with `npx skills add trycourier/courier-skills`, and c
 
 ## Run it
 
-You need Node 22.18 or newer and a [Courier API key](https://app.courier.com/settings/api-keys). A Test key is fine: every environment ships with the Courier Inbox provider configured.
+You need Node 22.18 or newer, a [Courier account](https://app.courier.com/signup), and a [Courier API key](https://app.courier.com/settings/api-keys). A Test key is fine: every environment ships with the Courier Inbox provider configured.
 
 ```bash
 git clone https://github.com/trycourier/courier-nuxt-quickstart.git
@@ -71,7 +71,9 @@ const userId = user.id;
 
 Never take the user id from the request. A caller who can name any user can read that user's inbox.
 
-**Match the token lifetime to your session.** The route asks for `1 day`. The SDK doesn't refresh tokens, so mint a new one and call `signIn` again before the old one expires.
+**Match the token lifetime to your session.** The route asks for `1 day`. Always set `expires_in`: omitting it mints a token that never expires. The SDK doesn't refresh tokens, so mint a new one and call `signIn` again before the old one expires.
+
+**Why Nuxt 4.4.** Nuxt 4.5 and newer need Node 22.19 or newer, and 4.6 needs 22.22.3. `package.json` pins `nuxt` to `~4.4.8` and `vue-router` to `~5.4.0` so the app runs on Node 22.18 or newer. On a newer Node, drop the pins.
 
 **Set the key where you deploy.** `nuxt dev` loads `.env`. The built server reads `COURIER_API_KEY` from the environment at request time: `COURIER_API_KEY=... node .output/server/index.mjs`.
 
@@ -85,11 +87,11 @@ Never take the user id from the request. A caller who can name any user can read
 | `npm run send` | Send one message to the demo user's inbox |
 | `npm run first-send` | Run the guide's standalone first send |
 | `npm run build` | Production build into `.output` |
-| `npm run typecheck` | `nuxt typecheck` |
+| `npm run typecheck` | `nuxt typecheck`, then `tsc` over `scripts/` |
 
 ## Troubleshooting
 
-**The page says `COURIER_API_KEY is not set`.** Create `.env` from `.env.example` and restart `npm run dev`.
+**The page says `COURIER_API_KEY is not set`.** Add the key to `.env` (copy `.env.example`) and restart `npm run dev`.
 
 **The inbox renders but stays empty.** Check that the send's `user_id` matches the token's, and find the message in [Courier Logs](https://app.courier.com/logs).
 

@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   if (!apiKey) {
     throw createError({
       statusCode: 500,
-      statusMessage: "COURIER_API_KEY is not set. Copy .env.example to .env, add your key, and restart.",
+      statusMessage: "COURIER_API_KEY is not set. Add it to .env and restart the server.",
     });
   }
 
@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
   try {
     const { token } = await client.auth.issueToken({
       scope: `user_id:${userId} inbox:read:messages inbox:write:events`,
-      // Match your session length. The SDK doesn't refresh tokens.
+      // Always set this. Omitting it mints a token that never expires.
       expires_in: "1 day",
     });
 

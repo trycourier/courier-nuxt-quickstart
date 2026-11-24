@@ -9,7 +9,7 @@ Guide: https://www.courier.com/docs/guides/add-an-inbox-to-nuxt
 - `npm install`: install dependencies (Node 22.18 or newer)
 - `npm run dev`: serve the inbox at http://localhost:3000
 - `npm run send`: send one inbox message to the demo user and print the request id
-- `npm run typecheck` and `npm run build`: check before you finish
+- `npm run typecheck` (Nuxt code, then `scripts/`) and `npm run build`: check before you finish
 
 ## Environment (`.env`, copied from `.env.example`)
 
@@ -27,7 +27,7 @@ Guide: https://www.courier.com/docs/guides/add-an-inbox-to-nuxt
 
 - Keep `COURIER_API_KEY` on the server. The browser only ever gets the scoped JWT.
 - Take the token's user id from the session, never from the request.
-- Scope tokens as `user_id:<id> inbox:read:messages inbox:write:events` and always set `expires_in`.
+- Scope tokens as `user_id:<id> inbox:read:messages inbox:write:events` and always set `expires_in`. Omitting it mints a token that never expires.
 - Call `signIn` in `onMounted` so it runs only in the browser. No `<ClientOnly>` is needed.
 - Send to the same `user_id` the token is scoped to, with `routing: { method: "single", channels: ["inbox"] }`.
 - Use `@trycourier/courier`, not raw HTTP, and don't call `/auth/issue-token` from the browser.

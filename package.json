@@ -14,7 +14,7 @@
     "postinstall": "nuxt prepare",
     "send": "tsx --env-file=.env scripts/send.ts",
     "first-send": "tsx --env-file=.env scripts/first-send.ts",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck && tsc --noEmit --strict --skipLibCheck --target es2023 --module preserve --types node scripts/*.ts"
   },
   "dependencies": {
     "@trycourier/courier": "^10.1.0",
