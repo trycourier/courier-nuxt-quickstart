@@ -1,0 +1,14 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "url": "https://context7.com/trycourier/courier-nuxt-quickstart",
+  "public_key": "pk_U3bU2CvznIef5RMDpii82",
+  "projectTitle": "Courier + Nuxt inbox quickstart",
+  "description": "A Nuxt app with a real-time Courier notification inbox: a server route that mints a scoped JWT and the Vue CourierInbox component.",
+  "rules": [
+    "Use @trycourier/courier on the server and read COURIER_API_KEY from the environment. Never hard-code a key or send it to the browser.",
+    "Mint the inbox JWT in a Nuxt server route with client.auth.issueToken, taking the user id from the session, never from the request.",
+    "Scope tokens as user_id:<id> inbox:read:messages inbox:write:events and always set expires_in.",
+    "Render CourierInbox from @trycourier/courier-vue and call courier.shared.signIn in onMounted. ClientOnly isn't needed.",
+    "Send inbox messages with client.send.message and routing { method: 'single', channels: ['inbox'] } to the same user_id."
+  ]
+}

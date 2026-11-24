@@ -1,0 +1,32 @@
+{
+  "name": "courier-nuxt-quickstart",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A working Courier Inbox in a Nuxt app: a server route that mints a JWT, the Vue <CourierInbox>, and one send script.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "send": "tsx --env-file=.env scripts/send.ts",
+    "first-send": "tsx --env-file=.env scripts/first-send.ts",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@trycourier/courier": "^10.1.0",
+    "@trycourier/courier-vue": "^1.1.5",
+    "nuxt": "~4.4.8",
+    "vue": "^3.5.35",
+    "vue-router": "~5.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vue-tsc": "^3.3.14"
+  }
+}
